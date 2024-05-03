@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = "https://dwrapps.utah.gov/fishstocking/Fish?y=2023"
+url = "https://dwrapps.utah.gov/fishstocking/Fish?y=2024"
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 response = requests.get(url, headers=headers)
 soup = BeautifulSoup(response.text, "lxml")
