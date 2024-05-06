@@ -9,7 +9,7 @@ soup = BeautifulSoup(response.text, "lxml")
 print()
 print("Running web crawler to check for UDWR fishing updates...")
 
-if str(soup).count("VIVIAN PARK P") > 4:
+if str(soup).count("VIVIAN PARK P") > 6:
     print("Vivian Park Pond has been stocked! (new stock count: " + str(str(soup).count("VIVIAN PARK P")) + ")")
 
 if str(soup).count("PROVO R") > 2:
