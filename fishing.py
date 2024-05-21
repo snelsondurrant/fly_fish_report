@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-VIVIAN_COUNT = 6
+VIVIAN_COUNT = 8
 PROVO_COUNT = 2
 HOBBLE_COUNT = 0
 
