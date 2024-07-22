@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-VIVIAN_COUNT = 10
-PROVO_COUNT = 2
+VIVIAN_COUNT = 12
+PROVO_COUNT = 4
 HOBBLE_COUNT = 0
 
 url = "https://dwrapps.utah.gov/fishstocking/Fish?y=2024"
