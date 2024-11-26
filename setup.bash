@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo 'python3 ~/FishingWebCrawler/fishing.py' >> ~/.bashrc
+echo 'python3 ~/fishing_web_crawler/fishing.py' >> ~/.bashrc
