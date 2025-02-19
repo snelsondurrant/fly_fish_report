@@ -1,4 +1,5 @@
 #!/bin/bash
+# Created by Nelson Durrant, Feb 2025
 
 sudo apt install python3-requests
 sudo apt install python3-bs4
