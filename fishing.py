@@ -59,7 +59,7 @@ else:
         found_flag = True
 
     if not found_flag:
-        print("No new UDWR fly fishing data found.")
+        print("No new UDWR fly fishing data found. 🎣")
     else:
         print(url)
 
