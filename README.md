@@ -8,7 +8,7 @@
 
 - Ensure the Python libraries `requests` and `beautifulsoup4` are installed on your computer (e.g. `pip3 install requests beautifulsoup4`).
 
-- Open a terminal and clone the fish_check repo using `git clone https://github.com/snelsondurrant/fish_check.git`.
+- Open a terminal and clone the fish_check repo onto your computer using `git clone https://github.com/snelsondurrant/fish_check.git`.
 
 - Navigate to the cloned repo and run `python3 fish_check.py`.
 
