@@ -1,7 +1,7 @@
 #!/bin/bash
 # Created by Nelson Durrant, Feb 2025
 #
-# Sets up the script to run automatically on Linux machines
+# Sets up the script to run automatically on Linux or WSL machines
 
 sudo apt install python3-requests
 sudo apt install python3-bs4
