@@ -1,3 +1,7 @@
+[Manual Checks](https://github.com/snelsondurrant/fish_check?tab=readme-ov-file#manual-checks)
+
+[Automatic Checks](https://github.com/snelsondurrant/fish_check?tab=readme-ov-file#automatic-checks)
+
 -- 
 
 ### Manual Checks
@@ -6,7 +10,7 @@
 
 - Open a terminal and clone the fish_check repo using `git clone https://github.com/snelsondurrant/fish_check.git`.
 
-- 
+- Navigate to the cloned repo and run `python3 fish_check.py`.
 
 -- 
 
