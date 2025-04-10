@@ -2,7 +2,7 @@
 Author: Nelson Durrant
 Date: April 2025
 
-This script checks the Utah Division of Wildlife Resources (UDWR) website for new fly fishing data.
+This script checks the Utah Division of Wildlife Resources (UDWR) website for new stocking data.
 It compares the current data with previously saved data to identify new stocking events.
 """
 
@@ -85,7 +85,7 @@ if len(sys.argv) > 1 and sys.argv[1] == "--update":
         with open(DATA_FILE, "wb") as file:
             pickle.dump(dict(current_counts), file)
         print()
-        print("[INFO] UDWR fly fishing data updated successfully! 🎣")
+        print("[INFO] UDWR fish stocking updated successfully! 🎣")
         print()
     except Exception as e:
         print(f"[ERROR] Could not save data to '{DATA_FILE}': {e}")
@@ -107,12 +107,12 @@ else:
 
     # Print the comparison results
     if found_update:
-        print(f"[INFO] New UDWR fly fishing data found! 🎣")
+        print(f"[INFO] New UDWR fish stocking data found! 🎣")
         for update_msg in updated_locations:
             print(f"- {update_msg}")
         print(f"\nDetails: {URL}")
         print("\nRun `python fish_check.py --update` to save the new data.")
     else:
-        print(f"[INFO] No new UDWR fly fishing data found. 🎣")
+        print(f"[INFO] No new UDWR fish stocking data found. 🎣")
 
     print()
