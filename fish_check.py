@@ -110,8 +110,8 @@ else:
         print(f"[INFO] New UDWR fish stocking data found! 🎣")
         for update_msg in updated_locations:
             print(f"- {update_msg}")
-        print(f"\nDetails: {URL}")
-        print("\nRun `python fish_check.py --update` to save the new data.")
+        print(f"\n{URL}")
+        print("\nRun `python3 fish_check.py --update` to save the new data.")
     else:
         print(f"[INFO] No new UDWR fish stocking data found. 🎣")
 
