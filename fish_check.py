@@ -79,40 +79,39 @@ for row in table_rows:
         if county_name == TARGET_COUNTY:
             current_counts[water_name] += 1
 
-# Handle the update request via command-line argument
-if len(sys.argv) > 1 and sys.argv[1] == "--update":
-    try:
-        with open(DATA_FILE, "wb") as file:
-            pickle.dump(dict(current_counts), file)
-        print()
-        print("[INFO] UDWR fish stocking updated successfully! 🎣")
-        print()
-    except Exception as e:
-        print(f"[ERROR] Could not save data to '{DATA_FILE}': {e}")
 
-else:
-    # Compare current data with previously saved data
-    print()
-    found_update = False
-    updated_locations = []
+# Compare current data with previously saved data
+print()
+found_update = False
+updated_locations = []
 
-    # Iterate through the current counts and compare with saved counts
-    for water, current_count in current_counts.items():
-        saved_count = saved_counts.get(water, 0)  # Default to 0 if the water body was not in the saved data
-        if current_count > saved_count:
-            diff = current_count - saved_count
-            plural = "s" if diff > 1 else ""
-            updated_locations.append(f"{water} has {diff} new stocking event{plural}!")
-            found_update = True
+# Iterate through the current counts and compare with saved counts
+for water, current_count in current_counts.items():
+    saved_count = saved_counts.get(water, 0)  # Default to 0 if the water body was not in the saved data
+    if current_count > saved_count:
+        diff = current_count - saved_count
+        plural = "s" if diff > 1 else ""
+        updated_locations.append(f"{water} has {diff} new stocking event{plural}!")
+        found_update = True
 
-    # Print the comparison results
-    if found_update:
-        print(f"[INFO] New UDWR fish stocking data found! 🎣")
-        for update_msg in updated_locations:
-            print(f"- {update_msg}")
-        print(f"\n{URL}")
-        print("\nRun `python3 fish_check.py --update` to save the new data.")
+# Print the comparison results
+if found_update:
+    print(f"[INFO] New UDWR fish stocking data found! 🎣")
+    for update_msg in updated_locations:
+        print(f"- {update_msg}")
+    print(f"\n{URL}")
+
+    # Handle the update request via command-line argument
+    if len(sys.argv) > 1 and sys.argv[1] == "--update":
+        try:
+            with open(DATA_FILE, "wb") as file:
+                pickle.dump(dict(current_counts), file)
+            print("\n[INFO] UDWR fish stocking updated successfully!")
+        except Exception as e:
+            print(f"[ERROR] Could not save data to '{DATA_FILE}': {e}")
     else:
-        print(f"[INFO] No new UDWR fish stocking data found. 🎣")
+        print("\nRun `python3 fish_check.py --update` to save the new data.")
+else:
+    print(f"[INFO] No new UDWR fish stocking data found. 🎣")
 
-    print()
+print()
