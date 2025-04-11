@@ -26,7 +26,9 @@ try:
     script_directory = os.path.dirname(os.path.abspath(__file__))
     os.chdir(script_directory)
 except OSError as e:
-    print(f"[ERROR] Could not change directory: {e}")
+    print()
+    print(f"[ERROR] Could not change directory.")
+    print()
     sys.exit(1)
 
 # Load previously saved fish stocking data
@@ -39,15 +41,18 @@ except FileNotFoundError:
 except EOFError:
     pass # File is empty, will create a new one
 except Exception as e:
-    print(f"[ERROR] Could not load data from '{DATA_FILE}': {e}")
+    print()
+    print(f"[ERROR] Could not load data from '{DATA_FILE}'.")
+    print()
+    sys.exit(1)
 
 # Fetch the current fish stocking data from the UDWR website
 try:
-    response = requests.get(URL, headers=HEADERS, timeout=10)
+    response = requests.get(URL, headers=HEADERS, timeout=1)
     response.raise_for_status()  # Raise an exception for HTTP errors (4xx or 5xx)
 except requests.exceptions.RequestException as e:
     print()
-    print(f"[ERROR] Could not connect to UDWR website: {e}")
+    print(f"[ERROR] Could not connect to UDWR website.")
     print()
     sys.exit(1)
 except requests.exceptions.Timeout:
@@ -108,9 +113,9 @@ if found_update:
                 pickle.dump(dict(current_counts), file)
             print("\n[INFO] UDWR fish stocking updated successfully!")
         except Exception as e:
-            print(f"[ERROR] Could not save data to '{DATA_FILE}': {e}")
+            print(f"\n[ERROR] Could not save data to '{DATA_FILE}'.")
     else:
-        print("\nRun `python3 fish_check.py --update` to save the new data.")
+        print("\n[INFO] Run `python3 fish_check.py --update` to save the new data.")
 else:
     print(f"[INFO] No new UDWR fish stocking data found. 🎣")
 
