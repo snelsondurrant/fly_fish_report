@@ -19,7 +19,9 @@ DATA_FILE = "data.pickle"
 TARGET_COUNTY = "UTAH"
 CURRENT_YEAR = datetime.datetime.now().year
 URL = f"https://dwrapps.utah.gov/fishstocking/Fish?y={CURRENT_YEAR}"
-HEADERS = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
+}
 
 # Navigate to the directory of the script for consistent file access
 try:
@@ -37,9 +39,9 @@ try:
     with open(DATA_FILE, "rb") as file:
         saved_counts = pickle.load(file)
 except FileNotFoundError:
-    pass # File not found, will create a new one
+    pass  # File not found, will create a new one
 except EOFError:
-    pass # File is empty, will create a new one
+    pass  # File is empty, will create a new one
 except Exception as e:
     print()
     print(f"[ERROR] Could not load data from '{DATA_FILE}'.")
@@ -67,12 +69,12 @@ current_counts = Counter()
 found_rows = False
 
 # Find all table rows with the specified class
-table_rows = soup.find_all('tr', class_='table1')
+table_rows = soup.find_all("tr", class_="table1")
 
 # Iterate through each table row to extract relevant data
 for row in table_rows:
-    county_cell = row.find('td', class_='county')
-    water_cell = row.find('td', class_='watername')
+    county_cell = row.find("td", class_="county")
+    water_cell = row.find("td", class_="watername")
 
     # Check if both county and water name cells exist in the row
     if county_cell and water_cell:
@@ -84,7 +86,6 @@ for row in table_rows:
         if county_name == TARGET_COUNTY:
             current_counts[water_name] += 1
 
-
 # Compare current data with previously saved data
 print()
 found_update = False
@@ -92,7 +93,9 @@ updated_locations = []
 
 # Iterate through the current counts and compare with saved counts
 for water, current_count in current_counts.items():
-    saved_count = saved_counts.get(water, 0)  # Default to 0 if the water body was not in the saved data
+    saved_count = saved_counts.get(
+        water, 0
+    )  # Default to 0 if the water body was not in the saved data
     if current_count > saved_count:
         diff = current_count - saved_count
         plural = "s" if diff > 1 else ""
@@ -106,16 +109,17 @@ if found_update:
         print(f"- {update_msg}")
     print(f"\n{URL}")
 
-    # Handle the update request via command-line argument
-    if len(sys.argv) > 1 and sys.argv[1] == "--update":
+    # Ask the user if they want to update the data
+    user_choice = input("\nDo you want to save this new data? (y/n): ").strip().lower()
+    if user_choice == "y":
         try:
             with open(DATA_FILE, "wb") as file:
                 pickle.dump(dict(current_counts), file)
-            print("\n[INFO] UDWR fish stocking updated successfully!")
+            print("\n[INFO] UDWR fish stocking data updated successfully!")
         except Exception as e:
-            print(f"\n[ERROR] Could not save data to '{DATA_FILE}'.")
+            print(f"\n[ERROR] Could not save data to '{DATA_FILE}'. Error: {e}")
     else:
-        print("\n[INFO] Run `python3 fish_check.py --update` to save the new data.")
+        print("\n[INFO] New data not saved.")
 else:
     print(f"[INFO] No new UDWR fish stocking data found. 🎣")
 

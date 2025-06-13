@@ -1,6 +1,6 @@
-[Manual Mode](https://github.com/snelsondurrant/fish_check?tab=readme-ov-file#manual-checks)
+[Manual Mode](https://github.com/snelsondurrant/fish_check?tab=readme-ov-file#manual-mode)
 
-[Automatic Mode](https://github.com/snelsondurrant/fish_check?tab=readme-ov-file#automatic-checks)
+[Automatic Mode](https://github.com/snelsondurrant/fish_check?tab=readme-ov-file#automatic-mode)
 
 -- 
 
@@ -24,13 +24,13 @@
 
 - Open a WSL terminal and clone the fish_check repo into your WSL environment using `git clone https://github.com/snelsondurrant/fish_check.git`.
 
-- Navigate to the cloned repo and run `bash automatic.sh`.
+- Navigate to the cloned repo and run `bash setup.sh`.
 
 **Linux:**
 
 - Open a terminal and clone the fish_check repo into your Linux environment using `git clone https://github.com/snelsondurrant/fish_check.git`.
 
-- Navigate to the cloned repo and run `bash automatic.sh`.
+- Navigate to the cloned repo and run `bash setup.sh`.
 
 --
 
