@@ -1,6 +1,6 @@
-[Manual Mode](https://github.com/snelsondurrant/fish_check?tab=readme-ov-file#manual-mode)
+[Manual Mode](https://github.com/snelsondurrant/fly_fish_report?tab=readme-ov-file#manual-mode)
 
-[Automatic Mode](https://github.com/snelsondurrant/fish_check?tab=readme-ov-file#automatic-mode)
+[Automatic Mode](https://github.com/snelsondurrant/fly_fish_report?tab=readme-ov-file#automatic-mode)
 
 -- 
 
@@ -8,9 +8,9 @@
 
 - Ensure the Python libraries `requests` and `beautifulsoup4` are installed on your computer (e.g. `pip3 install requests beautifulsoup4`).
 
-- Open a terminal and clone the fish_check repo onto your computer using `git clone https://github.com/snelsondurrant/fish_check.git`.
+- Open a terminal and clone the fly_fish_report repo onto your computer using `git clone https://github.com/snelsondurrant/fly_fish_report.git`.
 
-- Navigate to the cloned repo and run `python3 fish_check.py`.
+- Navigate to the cloned repo and run `python3 fly_fish_report.py`.
 
 -- 
 
@@ -22,13 +22,13 @@
 
 - Install WSL2 on your Windows machine by following the instructions [here](https://docs.microsoft.com/en-us/windows/wsl/install).
 
-- Open a WSL terminal and clone the fish_check repo into your WSL environment using `git clone https://github.com/snelsondurrant/fish_check.git`.
+- Open a WSL terminal and clone the fly_fish_report repo into your WSL environment using `git clone https://github.com/snelsondurrant/fly_fish_report.git`.
 
 - Navigate to the cloned repo and run `bash setup.sh`.
 
 **Linux:**
 
-- Open a terminal and clone the fish_check repo into your Linux environment using `git clone https://github.com/snelsondurrant/fish_check.git`.
+- Open a terminal and clone the fly_fish_report repo into your Linux environment using `git clone https://github.com/snelsondurrant/fly_fish_report.git`.
 
 - Navigate to the cloned repo and run `bash setup.sh`.
 
