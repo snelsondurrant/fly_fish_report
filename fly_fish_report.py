@@ -27,6 +27,20 @@ except OSError as e:
     sys.exit(1)
 
 try:
+    response = requests.get(URL, headers=HEADERS, timeout=1)
+    response.raise_for_status()
+except requests.exceptions.RequestException as e:
+    print()
+    print(f"[ERROR] Could not connect to UDWR website.")
+    print()
+    sys.exit(1)
+except requests.exceptions.Timeout:
+    print()
+    print(f"[ERROR] Connection to UDWR website timed out.")
+    print()
+    sys.exit(1)
+
+try:
     subprocess.run(["git", "pull"], check=True, capture_output=True, text=True)
 except subprocess.CalledProcessError as e:
     print(f"[WARNING] Could not pull from GitHub: {e}")
@@ -42,20 +56,6 @@ except json.JSONDecodeError:
 except Exception as e:
     print()
     print(f"[ERROR] Could not load data from '{DATA_FILE}'.")
-    print()
-    sys.exit(1)
-
-try:
-    response = requests.get(URL, headers=HEADERS, timeout=1)
-    response.raise_for_status()
-except requests.exceptions.RequestException as e:
-    print()
-    print(f"[ERROR] Could not connect to UDWR website.")
-    print()
-    sys.exit(1)
-except requests.exceptions.Timeout:
-    print()
-    print(f"[ERROR] Connection to UDWR website timed out.")
     print()
     sys.exit(1)
 

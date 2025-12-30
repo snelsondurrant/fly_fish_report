@@ -15,7 +15,7 @@ else
     echo "[SUCCESS] Environment created and packages installed."
 fi
 
-BASHRC_COMMAND='source ~/fly_fish_report/venv/bin/activate && python3 ~/fly_fish_report/fly_fish_report.py && deactivate'
+BASHRC_COMMAND='source ~/fly_fish_report/venv/bin/activate && { python3 ~/fly_fish_report/fly_fish_report.py; deactivate; }'
 if grep -Fxq "$BASHRC_COMMAND" ~/.bashrc; then
     echo "[WARNING] The script is already configured to run in .bashrc."
 else
