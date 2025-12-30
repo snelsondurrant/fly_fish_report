@@ -2,14 +2,14 @@
 
 import requests
 from bs4 import BeautifulSoup
-import pickle
+import json
 import sys
 import os
 import subprocess
 from collections import Counter
 import datetime
 
-DATA_FILE = "data.pickle"
+DATA_FILE = "data.json"
 TARGET_COUNTY = "UTAH"
 CURRENT_YEAR = datetime.datetime.now().year
 URL = f"https://dwrapps.utah.gov/fishstocking/Fish?y={CURRENT_YEAR}"
@@ -33,11 +33,11 @@ except subprocess.CalledProcessError as e:
 
 saved_counts = {}
 try:
-    with open(DATA_FILE, "rb") as file:
-        saved_counts = pickle.load(file)
+    with open(DATA_FILE, "r") as file:
+        saved_counts = json.load(file)
 except FileNotFoundError:
     pass
-except EOFError:
+except json.JSONDecodeError:
     pass
 except Exception as e:
     print()
@@ -100,8 +100,8 @@ if found_update:
     user_choice = input("\nDo you want to save this new data? (y/n): ").strip().lower()
     if user_choice == "y":
         try:
-            with open(DATA_FILE, "wb") as file:
-                pickle.dump(dict(current_counts), file)
+            with open(DATA_FILE, "w") as file:
+                json.dump(dict(current_counts), file, indent=4)
             print("\n[INFO] UDWR fish stocking data updated successfully!")
             
             try:
