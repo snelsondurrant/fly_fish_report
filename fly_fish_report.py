@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import pickle
 import sys
 import os
+import subprocess
 from collections import Counter
 import datetime
 
@@ -24,6 +25,11 @@ except OSError as e:
     print(f"[ERROR] Could not change directory.")
     print()
     sys.exit(1)
+
+try:
+    subprocess.run(["git", "pull"], check=True, capture_output=True, text=True)
+except subprocess.CalledProcessError as e:
+    print(f"[WARNING] Could not pull from GitHub: {e}")
 
 saved_counts = {}
 try:
@@ -97,6 +103,14 @@ if found_update:
             with open(DATA_FILE, "wb") as file:
                 pickle.dump(dict(current_counts), file)
             print("\n[INFO] UDWR fish stocking data updated successfully!")
+            
+            try:
+                subprocess.run(["git", "add", DATA_FILE], check=True, capture_output=True, text=True)
+                subprocess.run(["git", "commit", "-m", "Update fish stocking data"], check=True, capture_output=True, text=True)
+                subprocess.run(["git", "push"], check=True, capture_output=True, text=True)
+            except subprocess.CalledProcessError as e:
+                print(f"[WARNING] Could not push to GitHub: {e}")
+
         except Exception as e:
             print(f"\n[ERROR] Could not save data to '{DATA_FILE}'. Error: {e}")
     else:
